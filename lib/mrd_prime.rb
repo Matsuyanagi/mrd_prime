@@ -12,7 +12,7 @@ class Integer
   # it is enough to test a = 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, and 41.
   # and the result will be deterministic."
   #
-  def mr_prime?
+  def mrd_prime?
 
     return false if self < 2
     return true  if self < 4
@@ -34,12 +34,13 @@ class Integer
       41  =>  3317044064679887385961981,
     }
     
+    last_p = 1
     prime_and_max.each do |p,m|
       return true if self == p
       return false if self % p == 0
+      last_p = p
     end
-    p, m = prime_and_max.last
-    return true if self < p * p
+    return true if self < last_p * last_p
 
     p_1 = self - 1
 
